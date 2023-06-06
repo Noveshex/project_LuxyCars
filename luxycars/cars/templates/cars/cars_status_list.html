@@ -1,0 +1,16 @@
+{% extends 'cars/base.html' %}
+
+{% block content %}
+<section class="products" id="products">
+  <div class="box_conteiner">
+    {% for car in cars %}
+      <div class="box">
+        <img src="{{ car.images.url }}" alt="{{ car.brand }} - {{ car.model }}">
+        <h1>{{ car.brand }} - {{ car.model }}</h1>
+        <h1>${{ car.price }}</h1>
+        <a href="{{ car.get_absolute_url }}" class="btn">Check it Out</a>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock content %}

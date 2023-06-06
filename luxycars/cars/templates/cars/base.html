@@ -1,0 +1,76 @@
+{% load static %}
+{% load cars_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link type="text/css" href="{% static 'cars/css/style.css' %}" rel="stylesheet">
+</head>
+<body>
+{% block mainmenu %}
+<header>
+    <div class="logo">
+        <a href="{% url 'main' %}"><img src="{% static '/cars/img/logo.png' %}" alt="Logo of the website"></a>
+    </div>
+    <nav>
+        {% for el in menu %}
+        <a href="{% url el.url_name %}">{{ el.title }}</a>
+        {% endfor %}
+    </nav>
+    </div>
+    <div class="icons">
+        <div class="buy" id="buy-btn"><img src="{% static '/cars/img/buy_btn.png' %}" alt="buy_btn"></div>
+        <div class="menu" id="menu-btn"><img src="{% static '/cars/img/menu_btn.png' %}" alt="buy_btn"></div>
+    </div>
+    <div class="buy_item_conteiner">
+        <div class="buy_item">
+            <img class="cancel" src="{% static '/cars/img/close_btn.png' %}" alt="close_btn">
+            <img src="{% static '/cars/img/ferrari_458_italia.jpg' %}" alt="ferrari_458_italia">
+            <div class="content">
+                <h3>ferrari_458_italia</h3>
+                <div class="price">$200.000</div>
+            </div>
+        </div>
+        <a href="" class="btn">Buy</a>
+    </div>
+</header>
+{% endblock mainmenu %}
+{% block content %}
+<section class='main' id="main">
+    <div class="home">
+        <h3>BE ORIGINAL</h3>
+        <a href="#products" class="btn">Get your Car</a>
+    </div>
+</section>
+<section class="about" id="about">
+    <h3>We are glad to see you in our store. Stay tuned for news and don't miss the chance to get the best offers from <span>LuxyCars!</span></h3>
+</section>
+
+<section class="products" id="products">
+    <h1 class="heading">our<span>Cars</span></h1>
+    <div class="box_conteiner">
+<!--        {% get_status as status%}-->
+        {% for cat in status %}
+        <div class="box">
+            <img src="{{ cat.images.url }}" alt="{{ cat.status }}">
+            <h3>{{ cat.status }}</h3>
+            <a href="{% url 'cars_status_list' cat.slug %}" class="btn">Check it Out</a>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock content %}
+<footer>
+    <div class="share">
+        <a href="#"><img src="{% static '/cars/img/facebook.png' %}" class="Facebook" alt="Facebook"></img></a>
+        <a href="#"><img src="{% static '/cars/img/instagram.png' %}" class="Instagram" alt="Instagram"></img></a>
+        <a href="#"><img src="{% static '/cars/img/telegram.png' %}" class="Telegram" alt="Telegram"></img></a>
+        <a href="#"><img src="{% static '/cars/img/youtube.png' %}" class="Youtube" alt="Youtube"></img></a>
+    </div>
+    <div class="credit">be original</div>
+</footer>
+<script src="static/cars/js/index.js"></script>
+</body>
+</html>

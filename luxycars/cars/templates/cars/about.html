@@ -1,0 +1,42 @@
+{% extends 'cars/base.html' %}
+{% load static %}
+{% block content %}
+<section class="superstars">
+    <h1 class="stars">Be<span>Like</span></h1>
+    <div class="box_conteiner">
+        <div class="box">
+            <img src="{% static '/cars/img/messi.jpg' %}" alt="messi">
+            <h3>Lionel Messi</h3>
+            <div class="marks">
+                <img src="{% static '/cars/img/mark.png' %}" alt="mark" class="mark">
+                <img src="{% static '/cars/img/mark.png' %}" alt="mark" class="mark">
+                <img src="{% static '/cars/img/mark.png' %}" alt="mark" class="mark">
+                <img src="{% static '/cars/img/mark.png' %}" alt="mark" class="mark">
+                <img src="{% static '/cars/img/mark.png' %}" alt="mark" class="mark">
+            </div>
+        </div>
+        <div class="box">
+            <img src="{% static '/cars/img/Adriana.jpg' %}" alt="Adriana">
+            <h3>Adriana Lima</h3>
+            <div class="marks">
+                <img src="{% static '/cars/img/mark.png' %}" alt="mark" class="mark">
+                <img src="{% static '/cars/img/mark.png' %}" alt="mark" class="mark">
+                <img src="{% static '/cars/img/mark.png' %}" alt="mark" class="mark">
+                <img src="{% static '/cars/img/mark.png' %}" alt="mark" class="mark">
+                <img src="{% static '/cars/img/mark.png' %}" alt="mark" class="mark">
+            </div>
+        </div>
+        <div class="box">
+            <img src="{% static '/cars/img/beckham.jpg' %}" alt="beckham">
+            <h3>David Beckham</h3>
+            <div class="marks">
+                <img src="{% static '/cars/img/mark.png' %}" alt="mark" class="mark">
+                <img src="{% static '/cars/img/mark.png' %}" alt="mark" class="mark">
+                <img src="{% static '/cars/img/mark.png' %}" alt="mark" class="mark">
+                <img src="{% static '/cars/img/mark.png' %}" alt="mark" class="mark">
+                <img src="{% static '/cars/img/mark.png' %}" alt="mark" class="mark">
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

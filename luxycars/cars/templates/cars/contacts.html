@@ -1,0 +1,25 @@
+{% extends 'cars/base.html' %}
+
+{% block content %}
+<section class="location" id="contacts">
+    <div class="row">
+        <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.3059353029!2d-74.25986548248684!3d40.69714941932609!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2z0J3RjNGOLdCZ0L7RgNC6LCDQodCo0JA!5e0!3m2!1sru!2sua!4v1681909592945!5m2!1sru!2sua" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <form action="">
+            <h3>get in touch</h3>
+            <div class="inputBox">
+                <span class="user"></span>
+                <input type="text" placeholder="name">
+            </div>
+            <div class="inputBox">
+                <span class="user"></span>
+                <input type="email" placeholder="email">
+            </div>
+            <div class="inputBox">
+                <span class="user"></span>
+                <input type="number" placeholder="phone">
+            </div>
+            <input type="submit" value="contact now" class="btn">
+        </form>
+    </div>
+</section>
+{% endblock content %}
