@@ -1,4 +1,5 @@
 from .models import *
+from .forms import *
 
 menu = [
             {'title': 'Main', 'url_name': 'main'},
@@ -13,8 +14,10 @@ class DataMixin:
         context = kwargs
         status = Status.objects.all()
         cars = Cars.objects.all()
+        form = GetContactForm()
         context['menu'] = menu
         context['status'] = status
         context['cars'] = cars
+        context['form'] = form
 
         return context

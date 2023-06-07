@@ -1,7 +1,10 @@
 from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, DetailView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView
+from django.core.paginator import Paginator
+from .utils import menu
 
 from .models import *
 from .utils import *
@@ -30,9 +33,10 @@ class AboutView(DataMixin, ListView):
 
 
 class CarsListView(DataMixin, ListView):
+    paginate_by = 4
     model = Cars
     template_name = 'cars/cars.html'
-    context_object_name = 'cars'
+    context_object_name = 'object_list'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -44,9 +48,10 @@ class CarsListView(DataMixin, ListView):
         return Cars.objects.filter(is_published=True)
 
 
-class ContactView(DataMixin, ListView):
-    model = Status
+class ContactView(DataMixin, CreateView):
+    form_class = GetContactForm
     template_name = 'cars/contacts.html'
+    success_url = reverse_lazy('main')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -55,20 +60,35 @@ class ContactView(DataMixin, ListView):
         return dict(list(context.items()) + list(c_def.items()))
 
 
-class CarsStatusList(DataMixin, ListView):
-    model = Status
-    template_name = 'cars/cars_status_list.html'
-    context_object_name = 'cars'
-    allow_empty = False
+# class CarsStatusList(DataMixin, ListView):
+#     model = Status
+#     template_name = 'cars/cars_status_list.html'
+#     context_object_name = 'cars'
+#     allow_empty = False
+#
+#     def get_context_data(self, *, object_list=None, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         c_def = self.get_user_context(title='Luxy ' + str(context['cars'][0].status) + ' Cars')
+#
+#         return dict(list(context.items()) + list(c_def.items()))
+#
+#     def get_queryset(self):
+#         return Cars.objects.filter(status__slug=self.kwargs['status_slug'], is_published=True)
 
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title='Luxy ' + str(context['cars'][0].status) + ' Cars')
 
-        return dict(list(context.items()) + list(c_def.items()))
+def cars_status_list(request, status_slug):
+    status = Status.objects.get(slug=status_slug)
+    cars = Cars.objects.filter(status=status)
+    title = "Luxy " + status.status + " Cars"
 
-    def get_queryset(self):
-        return Cars.objects.filter(status__slug=self.kwargs['status_slug'], is_published=True)
+    context = {
+        'cars': cars,
+        'status': status,
+        'title': title,
+        'menu': menu,
+    }
+
+    return render(request, 'cars/cars_status_list.html', context=context)
 
 
 class ShowCar(DataMixin, DetailView):

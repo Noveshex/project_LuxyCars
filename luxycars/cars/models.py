@@ -44,3 +44,18 @@ class Cars(models.Model):
         verbose_name_plural = "Cars"
         ordering = ['slug']
 
+
+class ContactUs(models.Model):
+    name = models.CharField(max_length=50)
+    phone = models.CharField(max_length=100)
+    email = models.EmailField()
+    message = models.TextField()
+    time = models.DateTimeField(auto_now=True)
+    is_answered = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.email
+
+    class Meta:
+        verbose_name = "Contact Form"
+        verbose_name_plural = "Contact Form"
