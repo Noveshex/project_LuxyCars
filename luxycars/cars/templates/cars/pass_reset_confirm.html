@@ -1,0 +1,14 @@
+{% extends 'cars/base.html' %}
+
+{% block content %}
+<div class="register-page">
+    <h1>Password reset Form</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="login-func">
+            <button type="submit">Update password</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

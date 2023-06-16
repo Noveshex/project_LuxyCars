@@ -1,7 +1,6 @@
 {% extends 'cars/base.html' %}
 
 {% block content %}
-
 <section class="products" id="products">
     <div class="box_conteiner">
         <div class="box">
@@ -9,6 +8,7 @@
             <h1>{{ cars.brand }} {{ cars.model }}</h1>
             <h2>${{ cars.price }}</h2>
             <h2>{{ cars.status }}</h2>
+            <a href="{% url 'process_order' car_slug=cars.slug %}" class="btn">Buy</a>
         </div>
     </div>
 

@@ -9,10 +9,10 @@
 
             <h3>get in touch</h3>
             <p>{{ form.non_field_errors }}</p>
-            {% for f in form %}
+            {% for f in contact_form %}
                 <p><label class="user" for="{{ f.id_for_label }}">{{ f.label }}</label>{{ f }}</p>
             {% endfor %}
-            <input type="submit" value="contact now" class="btn">
+            <input type="submit" value="Contact Now" class="btn">
         </form>
     </div>
 </section>

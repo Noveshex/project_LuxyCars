@@ -1,0 +1,34 @@
+{% extends 'cars/base.html' %}
+
+{% block content %}
+<div class="register-page">
+    <h1>{{ title }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-error">{{ form.non_field_errors }}</div>
+        {% for f in register_form %}
+        <p><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}</label>{{ f }}</p>
+        <div class="form-error">{{ f.errors }}</div>
+        {% endfor %}
+        <div class="register-func">
+            <button type="submit">Register</button>
+            <a href="{% url 'login' %}">Login</a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
+
+<!--
+        <div class="form-group">
+            <label for="{{ register_form.username.id_for_label }}">Login:</label>
+            {{ form.username }}
+        </div>
+        <div class="form-group">
+            <label for="{{ register_form.password1.id_for_label }}">Password:</label>
+            {{ form.password1 }}
+        </div>
+        <div class="form-group">
+            <label for="{{ register_form.password2.id_for_label }}">Repeat password:</label>
+            {{ form.password2 }}
+        </div>-->

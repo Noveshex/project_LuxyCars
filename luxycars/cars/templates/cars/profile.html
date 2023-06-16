@@ -1,0 +1,38 @@
+{% extends 'cars/base.html' %}
+{% load static %}
+{% block content %}
+<title>{{ title }}</title>
+<section class="profile">
+    <div class="profile-page">
+        {% if user.email %}
+        <h1>{{ user.username }}<br>Email: {{ user.email }}</h1>
+        {% else %}
+        <h1>{{ user.username }}</h1>
+        {% endif %}
+        <div class="profile-main">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi at aut dolores enim,
+                excepturi facere fugiat fugit illum ipsa iusto, laborum nam, possimus quia repellendus rerum saepe sequi voluptas!</p>
+        </div>
+        <a href="{% url 'contacts' %}" class="btn">Contact me!</a>
+        <div class="icons">
+            <a href="{% url 'logout' %}">
+                <img src="{% static '/cars/img/exit.png' %}" alt="exit_btn">
+            </a>
+        </div>
+    </div>
+    <div class="register-page">
+        <h1>{{ title }}</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-error">{{ form.non_field_errors }}</div>
+            {% for f in update_form %}
+            <p><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}</label>{{ f }}</p>
+            <div class="form-error">{{ f.errors }}</div>
+            {% endfor %}
+            <div class="register-func">
+                <button type="submit">Update</button>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

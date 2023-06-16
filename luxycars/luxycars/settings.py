@@ -17,7 +17,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'cars.apps.CarsConfig'
+    'debug_toolbar',
+    'captcha',
+    'cars.apps.CarsConfig',
 ]
 
 MIDDLEWARE = [
@@ -28,6 +30,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'luxycars.urls'
@@ -80,6 +83,13 @@ USE_I18N = True
 
 USE_TZ = True
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'anton.khomyk@howly.com'
+EMAIL_HOST_PASSWORD = 'ndqwkwgobimujomm'
+
 STATIC_URL = '/static/'
 
 STATIC_DIRS = [
@@ -92,3 +102,17 @@ MEDIA_URL = '/cars_images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'cars_images')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+INTERNAL_IPS = [
+    '127.0.0.1'
+]
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': os.path.join(BASE_DIR, 'cars_cache')
+    }
+}
+
+LOGIN_REDIRECT_URL = 'main'
+LOGIN_URL = 'login'

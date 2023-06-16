@@ -3,7 +3,7 @@ from .forms import *
 
 menu = [
             {'title': 'Main', 'url_name': 'main'},
-            {'title': 'About', 'url_name': 'about'},
+            # {'title': 'About', 'url_name': 'about'},
             {'title': 'Cars', 'url_name': 'cars'},
             {'title': 'Contacts', 'url_name': 'contacts'},
         ]
@@ -14,10 +14,14 @@ class DataMixin:
         context = kwargs
         status = Status.objects.all()
         cars = Cars.objects.all()
-        form = GetContactForm()
+        contact_form = GetContactForm()
+        register_form = RegisterUserForm()
+        login_form = LoginUserForm()
         context['menu'] = menu
         context['status'] = status
         context['cars'] = cars
-        context['form'] = form
+        context['contact_form'] = contact_form
+        context['register_form'] = register_form
+        context['login_form'] = login_form
 
         return context
